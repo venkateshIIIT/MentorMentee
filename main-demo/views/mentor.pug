@@ -1,0 +1,84 @@
+extends base
+include _reviewCard
+
+block append head
+  script(src='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.js')
+  link(href='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.css' rel='stylesheet')
+
+
+mixin overviewBox(label, text, icon)
+  .overview-box__detail
+    svg.overview-box__icon
+      use(xlink:href=`/img/icons.svg#icon-${icon}`)
+    span.overview-box__label= label
+    span.overview-box__text= text
+
+block content
+  section.section-header
+    .header__hero
+      .header__hero-overlay &nbsp;
+      img.header__hero-img(src=`/img/mentors/mentormenti`, alt=`mentormenti`)
+
+    .heading-box
+      h1.heading-primary
+        span= `${mentor.name} mentor`
+      .heading-box__group
+        .heading-box__detail
+          svg.heading-box__icon
+            use(xlink:href='/img/icons.svg#icon-clock')
+          span.heading-box__text= `${mentor.duration} Hours Max-Hours`
+        .heading-box__detail
+          svg.heading-box__icon
+            use(xlink:href='/img/icons.svg#icon-map-pin')
+          span.heading-box__text= mentor.company
+
+  section.section-description
+    //- .overview-box
+    //-   div
+    //-     .overview-box__group
+    //-       h2.heading-secondary.ma-bt-lg Quick facts
+     main.main
+    .loginsend-form
+      h2.heading-secondary.ma-bt-lg 
+      form.form.form--loginsend
+        .form__group
+          label.form__label(for='id') 
+          input#mentorid.form__input(placeholder='subject',value=mentor._id,type="hidden")
+        .form__group
+          label.form__label(for='id')
+          input#mentormail.form__input(placeholder='subject',value=mentor.email,type="hidden")
+        .form__group
+          label.form__label(for='subject') Subject
+          input#subject.form__input(type='text', placeholder='subject', required)
+        .form__group.ma-bt-md
+          label.form__label(for='compose') Body
+          input#compose.form__input(type='textarea', placeholder='Compose email', required, rows='10',cols='10')
+        .form__group
+          button.btn.btn--green send Mail
+
+          //- +overviewBox('Difficulty',mentor.difficulty, 'trending-up')
+          //- +overviewBox('Participants', `${tour.maxGroupSize} people`, 'user')
+          //- +overviewBox('Rating', `${tour.ratingsAverage} / 5`, 'star')
+
+        //- .overview-box__group
+        //-   h2.heading-secondary.ma-bt-lg Your tour guides
+
+    .description-box
+      h2.heading-secondary.ma-bt-lg= `About ${mentor.name} mentor`
+      - const parapraphs = mentor.description.split('\n');
+      each p in parapraphs
+        p.description__text= p
+
+  section.section-cta
+    .cta
+      .cta__img.cta__img--logo
+        img(src='/img/logo-white.png', alt='Natours logo')
+      .cta__content
+        h2.heading-secondary What are you waiting for?
+        p.cta__text= `Change your life today by adding one great skill from great mentor`
+        if user && mentor.status==='available'
+          button.btn.btn--green.span-all-rows#book-tour(data-mentor-id=`${mentor.id}`) Book mentor now!
+        else if user
+          h2.heading-secondary Currently mentor is not available
+        else
+          a.btn.btn--green.span-all-rows(href='/login') Log in to book tour

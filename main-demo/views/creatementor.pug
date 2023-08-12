@@ -1,0 +1,51 @@
+extends base
+
+block content
+  main.main
+    .creatementor-form
+      h2.heading-secondary.ma-bt-lg create Mentor Form!
+      form.form.form--creatementor
+        .form__group
+          label.form__label(for='name') Your name
+          input#name.form__input(type='text' placeholder='' required='')
+        .form__group
+          label.form__label(for='duration') Maximum Availability
+          input#duration.form__input(type='number' placeholder='In Hours' required='')
+        .form__group
+          label.form__label(for='price') Price
+          input#price.form__input(type='number' placeholder='price per hour' required='')
+        .form__group
+          label.form__label(for='discount') Price Discount
+          input#discount.form__input(type='number' step= 'any' placeholder='Discount[optional]' )
+        .form__group
+          label.form__label(for='company') Company where you working
+          input#company.form__input(type='text' placeholder='company Name')
+        .form__group
+          label.form__label(for='description') description
+          input#description.form__input(type='text' placeholder='tell about your self' required='')
+        .form__group
+          label.form__label(for='profession') Professions
+          input#profession.form__input(type='text' placeholder='e.g professor,software Engineer' required='')
+        .form__group
+          label.form__label(for='country') country
+          input#country.form__input(type='text' placeholder='where you belong to' required='')
+        .form__group
+          label.form__label(for='languages') languauges
+          input#languages.form__input(type='text' placeholder='languages where you proficient' required='')
+        .form__group
+          label.form__label(for='skills') Skills
+          input#skills.form__input(type='text' placeholder='price per hour' required='')
+        .form__group
+          label.form__label(for='uploadImage') Your Photo
+          input#uploadImage.form__input(type='file' placeholder='photo' required='')
+        .form__group
+          label.form__label(for='email') Email address
+          input#email.form__input(type='email'   placeholder='you@example.com' required='')
+        .form__group
+          label.form__label(for='password') Password
+          input#password.form__input(type='password'   placeholder='••••••••' required='')
+        .form__group
+          label.form__label(for='password') Confirm Password
+          input#confirmpassword.form__input(type='password'   placeholder='••••••••' required='')
+        .form__group
+          button.btn.btn--green submit

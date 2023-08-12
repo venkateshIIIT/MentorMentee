@@ -1,0 +1,54 @@
+extends base2
+block content
+    main.main
+        .user-view__content
+            .user-view__form-container
+                h2.heading-secondary.ma-bt-md Your account settings
+                form.form.form-user-data1
+                    if user.status==='available'
+                      .form__group.ma-bt-md
+                          label.form__label(for="availability") Availability
+                          input.availability#radiobtn(type='radio', name="availability", value='available' checked)
+                          label.radioStyle(for='Availability') Available
+                          input.availability#radiobtn(type='radio', name="availability", value='notAvailable')
+                          label.radioStyle(for='Availability') Not Available
+                    else
+                      .form__group.ma-bt-md
+                            label.form__label(for="availability") Availability
+                            input#radiobtn(type='radio', name="availability", value='available')
+                            label.radioStyle(for='Availability') Available
+                            input#radiobtn(type='radio', name="availability", value='notAvailable' checked)
+                            label.radioStyle(for='Availability') Not Available
+
+                    .form__group
+                        label.form__label(for='name') Name
+                        input#name.form__input(type='text', value=`${user.name}`, required, name='name')
+                    .form__group.ma-bt-md
+                      label.form__label(for='Company') Company
+                      input#company.form__input(type='company', value=`${user.company}`, required, name='email')
+                    .form__group
+                      label.form__label(for='description') Description
+                      input#description.form__input(type='text', value=`${user.description}`, required, name='email')
+                    .form__group
+                      label.form__label(for='Price') Price
+                      input#price.form__input(type='number', value=`${user.price}`, required, name='email')
+                    .form__group.right
+                        button.btn.btn--small.btn--green Save settings
+                    
+                .line &nbsp;
+                .user-view__form-container
+                h2.heading-secondary.ma-bt-md Password change
+                form.form.form-user-password1
+                    .form__group
+                    label.form__label(for='password-current') Current password
+                    input#password-current.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .form__group
+                    label.form__label(for='password') New password
+                    input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .form__group.ma-bt-lg
+                    label.form__label(for='password-confirm') Confirm password
+                    input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .form__group.right
+                        button.btn.btn--small.btn--green.btn--save-password Save password
+
+            

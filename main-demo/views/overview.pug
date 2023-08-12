@@ -1,0 +1,46 @@
+extends base
+
+block content
+  main.main
+    .card-container
+      each mentor in mentors
+        .card
+          .card__header
+            .card__picture
+              .card__picture-overlay &nbsp;
+              img.card__picture-img(src=`/img/mentors/${mentor.imageCover}`, alt=`${mentor.name}`)
+            h3.heading-tertirary
+              span= mentor.name
+
+          .card__details
+            h4.card__sub-heading= ` ${mentor.duration}Hours Max-Duration`
+            p.card__text= mentor.skills
+            .card__data
+              svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-map-pin')
+              span= mentor.company
+            .card__data
+              svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-calendar')
+              span= mentor.languages
+            .card__data
+              svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-flag')
+              span= `${mentor.country}`
+            .card__data
+              svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-user')
+              span= `${mentor.profession}`
+
+          .card__footer
+            p
+              span.card__footer-value= `${mentor.price} dollars`
+              | 
+              span.card__footer-text
+            p.card__ratings
+              span.card__footer-value= ''
+              if  mentor.status==='available'
+                span.card__footer-text= ` ( ${ mentor.status})`
+              else 
+                span.card__footer-text= ` ( currently ${ mentor.status})`
+            a.btn.btn--green.btn--small(href=`/mentor/${mentor._id}`) Details
